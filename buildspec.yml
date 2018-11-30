@@ -23,7 +23,7 @@ phases:
       - ls -la #- mvn -DskipTests package
       - echo $(pwd)
       - find . -name docker -print 2> /dev/null
-      - cp -r ./docker ./target/docker/
+      - cp -r ./docker/ ./target/docker/
       - cp -r ./target/*.jar ./target/docker/$REPOSITORY_NAME
       - docker build -t $REPOSITORY_URI:$TAG ./target/docker/$REPOSITORY_NAME;
       # - docker build --tag $REPOSITORY_URI:$TAG
