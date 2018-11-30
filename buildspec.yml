@@ -16,7 +16,7 @@ phases:
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
         - export SERVICE_USER=myuser
-        - epoxrt SERVICE_GROUP=mygroup
+        - export SERVICE_GROUP=mygroup
   build:
     commands:
       #- mvn -DskipTests package
