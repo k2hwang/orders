@@ -20,9 +20,9 @@ phases:
   build:
     commands:
       #- mvn -DskipTests package
-      - cp -r $HOME/docker $HOME/target/docker/
-      - cp -r $HOME/target/*.jar $HOME/target/docker/$REPOSITORY_NAME
-      - docker build -t $REPOSITORY_URI:$TAG $HOME/target/docker/$REPOSITORY_NAME;
+      - cp -r /docker /target/docker/
+      - cp -r /target/*.jar /target/docker/$REPOSITORY_NAME
+      - docker build -t $REPOSITORY_URI:$TAG /target/docker/$REPOSITORY_NAME;
       # - docker build --tag $REPOSITORY_URI:$TAG
 
   post_build:
