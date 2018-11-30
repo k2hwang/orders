@@ -17,14 +17,15 @@ phases:
         - export KUBECONFIG=$HOME/.kube/config
         - export SERVICE_USER=myuser
         - export SERVICE_GROUP=mygroup
+        - mkdir -p ./target/docker
   build:
     commands:
       - ls -la #- mvn -DskipTests package
       - echo $(pwd)
-      - find / -name target -print 2> /dev/null
+      - find . -name docker -print 2> /dev/null
       - cp -r ./docker ./target/docker/
-      - cp -r /target/*.jar /target/docker/$REPOSITORY_NAME
-      - docker build -t $REPOSITORY_URI:$TAG /target/docker/$REPOSITORY_NAME;
+      - cp -r ./target/*.jar ./target/docker/$REPOSITORY_NAME
+      - docker build -t $REPOSITORY_URI:$TAG ./target/docker/$REPOSITORY_NAME;
       # - docker build --tag $REPOSITORY_URI:$TAG
 
   post_build:
