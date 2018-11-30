@@ -20,9 +20,7 @@ phases:
         - mkdir -p ./target/docker/$REPOSITORY_NAME
   build:
     commands:
-      - ls -la #- mvn -DskipTests package
-      - echo $(pwd)
-      - cp -r ./docker/ ./target/docker/
+      - cp -r ./docker/$REPOSITORY_NAME/* ./target/docker/$REPOSITORY_NAME
       - cp -r ./target/*.jar ./target/docker/$REPOSITORY_NAME
       - find . -name Dockerfile -print 2> /dev/null
       - docker build -t $REPOSITORY_URI:$TAG ./target/docker/$REPOSITORY_NAME;
