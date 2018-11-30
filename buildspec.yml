@@ -15,10 +15,14 @@ phases:
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' $REPOSITORY_NAME.yml
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
+        - export SERVICE_USER=myuser
+        - epoxrt SERVICE_GROUP=mygroup
   build:
     commands:
       #- mvn -DskipTests package
-      - scripts/build_codepipeline.sh
+      - cp -r docker target/docker/
+      - cp -r target/*.jar target/docker/$REPOSITORY_NAME
+      - docker build -t $REPOSITORY_URI:$TAG target/docker/$REPOSITORY_NAME;
       # - docker build --tag $REPOSITORY_URI:$TAG
 
   post_build:
