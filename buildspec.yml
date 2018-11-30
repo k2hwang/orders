@@ -22,10 +22,7 @@ phases:
     commands:
       - cp -r ./docker/$REPOSITORY_NAME/* ./target/docker/$REPOSITORY_NAME
       - cp -r ./target/*.jar ./target/docker/$REPOSITORY_NAME
-      - find . -name Dockerfile -print 2> /dev/null
       - docker build -t $REPOSITORY_URI:$TAG ./target/docker/$REPOSITORY_NAME;
-      # - docker build --tag $REPOSITORY_URI:$TAG
-
   post_build:
     commands:
       - docker push $REPOSITORY_URI:$TAG
