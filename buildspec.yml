@@ -17,7 +17,7 @@ phases:
         - export KUBECONFIG=$HOME/.kube/config
         - export SERVICE_USER=myuser
         - export SERVICE_GROUP=mygroup
-        - mkdir -p ./target/docker
+        - mkdir -p ./target/docker/$REPOSITORY_NAME
   build:
     commands:
       - ls -la #- mvn -DskipTests package
