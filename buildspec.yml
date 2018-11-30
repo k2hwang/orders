@@ -19,8 +19,10 @@ phases:
         - export SERVICE_GROUP=mygroup
   build:
     commands:
-      #- mvn -DskipTests package
-      - cp -r /docker /target/docker/
+      - ls -la #- mvn -DskipTests package
+      - echo $(pwd)
+      - find / -name target -print 2> /dev/null
+      - cp -r ./docker ./target/docker/
       - cp -r /target/*.jar /target/docker/$REPOSITORY_NAME
       - docker build -t $REPOSITORY_URI:$TAG /target/docker/$REPOSITORY_NAME;
       # - docker build --tag $REPOSITORY_URI:$TAG
